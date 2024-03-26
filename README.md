@@ -4,7 +4,7 @@ This repository contains code for reproducing numerical experiments in the paper
 
 
 
-#### File organization 
+### File organization 
 
 `/data` contains pre-trained outcomes for drug discovery in Section 5 and health risk prediction in Section 6. 
 `/exp-drug` contains scripts for running the drug discovery experiments in Section 5.  
@@ -15,9 +15,11 @@ This repository contains code for reproducing numerical experiments in the paper
 
 We provide code for running both drug property prediction (DPP, classification) and drug-target interaction prediction (DTI, regression). 
 
-#### 1.1. Top-K selection 
+### 1.1. Top-K selection 
 
-**Top-K for DPP.** `./exp-drug/topk_dpp.py` is the script for running JOMI for DPP after top-K selection (both lowest and highest ranking) for all choices of K in our paper. It takes as inputs:
+**Top-K for DPP.** 
+
+`./exp-drug/topk_dpp.py` is the script for running JOMI for DPP after top-K selection (both lowest and highest ranking) for all choices of K in our paper. It takes as inputs:
 - `seed` random seed
 - `alpha` nominal miscoverage level (times 10), e.g., 1 for miscoverage rate 0.1
 - `output_dir` output directory 
@@ -32,7 +34,9 @@ python3 topK_dpp.py --seed 1 --alpha 1 --output_dir "./results/topK_DPP/" --rank
 
 It then outputs a csv file `topK_test_DPP_bin_seed_1_alpha_1.csv` in the designated folder, where each row stores the empirical miscoverage over selected test points and average prediction set size with experiment parameters at one value of K for either highest or lowest ranking. 
 
-**Top-K for DTI.** `./exp-drug/topk_dti.py` is the script for running JOMI for DTI after top-K selection for all choices of K in our paper (both lowest and highest ranking). It takes as inputs:
+**Top-K for DTI.** 
+
+`./exp-drug/topk_dti.py` is the script for running JOMI for DTI after top-K selection for all choices of K in our paper (both lowest and highest ranking). It takes as inputs:
 - `seed` random seed
 - `alpha` nominal miscoverage level (times 10), e.g., 1 for miscoverage rate 0.1
 - `output_dir` output directory 
@@ -49,7 +53,9 @@ It then outputs a csv file `topK_test_calib_DTI_seed_1_alpha_1.csv` in the desig
 
 #### 1.2. Conformalized selection
 
-**Conformal selection for DPP.** `./exp-drug/confsel_dpp.py` is the script for running JOMI for DPP after conformalized selection at all FDR levels in our paper. It takes as inputs:
+**Conformal selection for DPP.** 
+
+`./exp-drug/confsel_dpp.py` is the script for running JOMI for DPP after conformalized selection at all FDR levels in our paper. It takes as inputs:
 - `seed` random seed
 - `alpha` nominal miscoverage level (times 10), e.g., 1 for miscoverage rate 0.1
 - `output_dir` output directory  
@@ -63,7 +69,9 @@ python3 confsel_dpp.py --seed 1 --alpha 1 --output_dir "./results/confsel_DPP/" 
 
 It then outputs a csv file `confsel_DPP_bin_seed_1_alpha_1.csv` in the designated folder, where each row stores the empirical miscoverage over selected test points and average prediction set size with experiment parameters at one FDR level. 
 
-**Conformal selection for DTI.** `./exp-drug/confsel_dti.py` is the script for running JOMI for DTI after conformalized selection at all FDR levels in our paper. It takes as inputs:
+**Conformal selection for DTI.** 
+
+`./exp-drug/confsel_dti.py` is the script for running JOMI for DTI after conformalized selection at all FDR levels in our paper. It takes as inputs:
 - `seed` random seed
 - `alpha` nominal miscoverage level (times 10), e.g., 1 for miscoverage rate 0.1
 - `output_dir` output directory  
@@ -79,7 +87,9 @@ It then outputs a csv file `confsel_DTI_seed_101_alpha_3.csv` in the designated 
 
 #### 1.3. Selection under constraints
 
-**Constrained selection for DPP.** `./exp-drug/constraint_dpp.py` is the script for running JOMI, randomized JOMI, and vanilla conformal prediction for DPP after selection with budget constraints. It takes as inputs:
+**Constrained selection for DPP.** 
+
+`./exp-drug/constraint_dpp.py` is the script for running JOMI, randomized JOMI, and vanilla conformal prediction for DPP after selection with budget constraints. It takes as inputs:
 - `seed` random seed
 - `alpha` nominal miscoverage level (times 10), e.g., 1 for miscoverage rate 0.1
 - `output_dir` output directory  
@@ -93,7 +103,9 @@ python3 constraint_dpp.py --seed 531 --alpha 4 --output_dir "./results/cons_DPP/
 
 It then outputs a csv file `opt_DPP_seed_531_alpha_4.csv` in the designated folder, where each row contains the miscover indicator and prediction set size for one selected test unit, together with experiment parameters.
 
-**Constrained selection for DTI.** `./exp-drug/confsel_dti.py` is the script for running JOMI, randomized JOMI, and vanilla conformal prediction for DTI after selection with budget constraints. It takes as inputs:
+**Constrained selection for DTI.** 
+
+`./exp-drug/confsel_dti.py` is the script for running JOMI, randomized JOMI, and vanilla conformal prediction for DTI after selection with budget constraints. It takes as inputs:
 - `seed` random seed
 - `alpha` nominal miscoverage level (times 10), e.g., 1 for miscoverage rate 0.1
 - `output_dir` output directory  
@@ -108,7 +120,7 @@ It then outputs a csv file `opt_DTI_seed_312_alpha_2.csv` in the designated fold
 
 ## 2. Health risk prediction experiments
 
-#### 2.1. Selection after optimization
+### 2.1. Selection after optimization
 
 `./exp-health/constraint.py` is the script for running JOMI, randomized JOMI, and vanilla conformal prediction for health risk prediction, when test units selected by Knapsack optimization, and outputs a csv file with results. It takes as inputs:
 - `seed` random seed
@@ -123,7 +135,7 @@ python3 constraint.py --seed 100 --alpha 1 --output_dir "./results/opt/"
 
 It then outputs a csv file `constraint_seed100_alpha_1.csv` in the designated folder, where each row contains the miscover indicator and prediction set size for one selected test unit and one procedure, together with experiment parameters.
 
-#### 2.2. Selection based on PI length
+### 2.2. Selection based on PI length
 
 `./exp-health/length.py` runs JOMI, randomized JOMI, and vanilla conformal prediction for health risk prediction, when test units whose preliminary conformal prediction sets based on score $V(x,y) = |y-\hat\mu(x)|/\hat\sigma(x)$ are shorter than 5. It uses the same score for constructing JOMI prediction sets. It takes the same inputs as Section 2.1. To run the script at random seed `100`, miscoverage level `0.1`, and write the output in `./results/length/`, navigate to the folder `/exp-health` and run the command: 
 
@@ -134,7 +146,7 @@ python3 length.py --seed 100 --alpha 1 --output_dir "./results/length/"
 
 It then outputs a csv file `length_seed_100_alpha_1.csv` in the designated folder, where each row contains the miscover indicator and prediction size for one test unit using one of the procedures, as well as experiment parameters and some intermediate outcomes. 
 
-#### 2.3. Selection based on PI upper bound
+### 2.3. Selection based on PI upper bound
 
 `./exp-health/lower.py` runs JOMI, randomized JOMI, and vanilla conformal prediction for health risk prediction, when test units whose preliminary conformal prediction sets based on score $V(x,y) = |y-\hat\mu(x)|/\hat\sigma(x)$ have an upper bound below 6. It uses the same score for constructing JOMI prediction sets. It takes the same inputs as Section 2.1. To run the script at random seed `100`, miscoverage level `0.1`, and write the output in `./results/lower/`, navigate to the folder `/exp-health` and run the command: 
 
@@ -145,7 +157,7 @@ python3 lower.py --seed 100 --alpha 1 --output_dir "./results/lower/"
 
 It then outputs a csv file `lower_seed_100_alpha_1.csv` in the designated folder, where each row contains the miscover indicator and prediction size for one test unit using one of the procedures, as well as experiment parameters and some intermediate outcomes. 
 
-#### Reference
+### Reference
 ```
 @article{jin2024confidence,
   title={Confidence on the focal: Conformal prediction with selection-conditional coverage},
