@@ -51,7 +51,7 @@ python3 topK_dti.py --seed 1 --alpha 1 --output_dir "./results/topK_DTI/" --rank
 It then outputs a csv file `topK_test_calib_DTI_seed_1_alpha_1.csv` in the designated folder, where each row stores the empirical miscoverage over selected test points and average prediction set size with experiment parameters at one value of K for either highest or lowest ranking. 
 
 
-#### 1.2. Conformalized selection
+### 1.2. Conformalized selection
 
 **Conformal selection for DPP.** 
 
@@ -85,7 +85,7 @@ python3 confsel_dti.py --seed 101 --alpha 3 --output_dir "./results/confsel_DTI/
 
 It then outputs a csv file `confsel_DTI_seed_101_alpha_3.csv` in the designated folder, where each row stores the empirical miscoverage over selected test points and average prediction set size with experiment parameters at one FDR level. 
 
-#### 1.3. Selection under constraints
+### 1.3. Selection under constraints
 
 **Constrained selection for DPP.** 
 
